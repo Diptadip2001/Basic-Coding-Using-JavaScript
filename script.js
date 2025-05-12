@@ -42,10 +42,30 @@ let b1=[1,2,3,4,5];
 b1.shift();
 console.log(b1);
 
+//without using inbuilt method how to remove the first element which will affect the original array
+function removeFirst(arr){
+    for(let i=0;i<arr.length;i++){
+        arr[i]=arr[i+1];
+    }
+    arr.length=arr.length-1;
+    return arr;
+}
+
+console.log(removeFirst([1,2,3,4,5]));
 // Write a Program to find a sum of an array?
 let b2=[1,2,3,4,5];
 let result=b2.reduce((acc,sum)=>acc+sum);
 console.log(result);
+
+
+//without using inbuilt method
+
+let arr=[1,2,3,4,5];
+let sum=0;
+for(let i of arr){
+    sum+=i;
+}
+console.log(sum)
 
 // Write a Program to check if a number is prime or not?
 function primeornot(b){
@@ -88,8 +108,10 @@ function fact(n){
 }
 console.log(fact(5));
 
+
+// Remove spaces from the string and update it
 function freq(str) {
-    // Remove spaces from the string and update it
+    
     str = str.replace(/\s+/g, '');
 
     // Create a frequency map
@@ -102,20 +124,36 @@ function freq(str) {
     return frequencyMap;
 }
 
-// Example usage
 const str = "hello world";
 const frequency = freq(str);
-
-// Display the frequency of each character
 frequency.forEach((count, char) => {
     console.log(`${char}: ${count}`);
 });
+
+//without using inbuilt method
+function freq1(str) {
+    let str1 = "";
+    for (let ch of str) {
+        if (ch !== " ") { 
+            str1 += ch;
+        }
+    }
+    return str1;
+}
+
+console.log(freq1("Hello World"));
+// Example usage
+
+
+
 
 
 let str1="apple,mango,banana";
 console.log(str1.substring(4,1));
 let str2=str1.slice(-4,-2);
 console.log(str2.substring(-4,-2))//it will take as 0,0
+
+// Display the frequency of each character
 
 function abc(arr){
     let frequencyMap=new Map();
@@ -129,6 +167,25 @@ frequencyMapResult.forEach((count, data) => {
     console.log(`${data} : ${count}`);
     
 })
+
+
+//find  frequency without using inbuilt method
+function frequency1(arr) {
+    let frequencyMap = {};
+    for (let i of arr) {
+        if (frequencyMap[i]) {
+            frequencyMap[i]++;
+        } else {
+            frequencyMap[i] = 1;
+        }
+    }
+    return frequencyMap;
+}
+
+
+let array=[1,1,4,1,6,2,"Dip","Dip"];
+console.log(frequency1(array));
+
 //  Write a Program to convert Celsius to Fahrenheit in JavaScript?
  function celsiusToFahrenheit(celsius) {
     return (celsius * 9/5) + 32;
@@ -150,10 +207,35 @@ console.log(`${fahrenheit1}°F is equal to ${celsius1}°C`);
 let b4=[2,1,3,4,5];
 b4.sort((a,b)=>a-b);
 console.log(b4);
+//without using inbuilt method
+for(let i=0;i<b4.length;i++){
+    for(let j=i+1;j<b4.length;j++){
+        if(b4[i]>b4[j]){
+            let temp=b4[i];
+            b4[i]=b4[j];
+            b4[j]=temp;
+        }
+    }
+}
+console.log(b4);
 // Write a Program to sort an array in Descending Order in JavaScript?
 let b3=[2,1,3,4,5];
 b3.sort((a,b)=>b-a);
 console.log(b3);
+//without using inbuilt method
+for(let i=0;i<b3.length;i++){
+    for(let j=i+1;j<b3.length;j++){
+        if(b3[i]<b3[j]){
+            let temp=b3[i];
+            b3[i]=b3[j];
+            b3[j]=temp;
+        }
+    }
+}
+console.log(b3);
+
+
+
 
 // Find the Intersection of Two Arrays in JavaScript?
 
@@ -163,7 +245,19 @@ let arr2 = [4, 5, 6, 7, 8];
 let intersection = arr1.filter(value => arr2.includes(value));
 console.log(intersection);
 
+//without using inbuilt method
 
+let array1=[1,2,3,4,5];
+let array2=[4,5,6,7,8];
+let intersection1=[];
+for(let i=0;i<array1.length;i++){
+    for(let j=0;j<array2.length;j++){
+        if(array1[i]==array2[j]){
+            intersection1.push(array1[i]);
+        }
+    }
+}
+console.log(intersection1);
 // Find the Union of Two Arrays in JavaScript?
 
 let arr3 = [1, 2, 3, 4, 5];
@@ -171,6 +265,27 @@ let arr4 = [4, 5, 6, 7, 8];
 let union=[...new Set([...arr3,...arr4])];
 console.log(union);
 
+//without using inbuilt method
+let array5 = [1, 2, 3, 4, 5]; 
+let array6 = [4, 5, 6, 7, 8];
+let union1 = [];
+for (let i = 0; i < array5.length; i++) {
+    union1.push(array5[i]);
+}
+for (let i = 0; i < array6.length; i++) {
+    let found = false;
+    for (let j = 0; j < union1.length; j++) {
+        if (array6[i] === union1[j]) {
+            found = true;
+            break;
+        }
+
+    }
+    if (!found) {
+        union1.push(array6[i]);
+    }
+}
+console.log(union1);
 // let arr1 = [1, 2, 3, 4, 5];
 // let arr2 = [4, 5, 6, 7, 8];
 // let arr3 = [];
@@ -228,6 +343,26 @@ function firstNonRepeatedChar(str) {
     return null;
 }
 console.log(firstNonRepeatedChar("swiss")); 
+
+//without using inbuilt method
+function firstNonRepeatedChar1(str) {
+    let frequencyMap = {};  
+    for (let i = 0; i < str.length; i++) {
+        if (frequencyMap[str[i]]) {
+            frequencyMap[str[i]]++;
+        } else {
+            frequencyMap[str[i]] = 1;
+
+        }
+    }
+    for (let i = 0; i < str.length; i++) {
+        if (frequencyMap[str[i]] === 1) {
+            return str[i];
+        }
+    }
+    return null;
+
+}
 
 // Find the Longest Word in a String in JavaScript?
 function findLongestWord(str) {
@@ -327,6 +462,24 @@ function removeDuplicates(arr) {
 let arr11 = [1, 2, 2, 3, 4, 4, 5];
 console.log(removeDuplicates(arr11));
 
+//without using inbuilt method
+function removeDuplicates1(arr) {
+    let uniqueArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        let found = false;
+        for (let j = 0; j < uniqueArr.length; j++) {
+            if (arr[i] === uniqueArr[j]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            uniqueArr.push(arr[i]);
+        }
+    }
+    return uniqueArr;
+}
+
 // Count Vowels in a String in JavaScript?
 
 function countVowels(str) {
@@ -349,7 +502,20 @@ function getUniqueCharacters(str) {
     for (let char of str) {
         uniqueChars.add(char);
     }
-
+    
+    
     return Array.from(uniqueChars).join("");
 }
 console.log(getUniqueCharacters("hello world"));
+
+//without using inbuilt method
+function getUniqueCharacters1(str) {
+    let uniqueChars = "";
+    for (let i = 0; i < str.length; i++) {
+        if (uniqueChars.indexOf(str[i]) === -1) {
+            uniqueChars += str[i];
+        }
+    }
+    return uniqueChars;
+}
+console.log(getUniqueCharacters1("hello world"));
